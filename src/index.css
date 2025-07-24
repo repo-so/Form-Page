@@ -1,1 +1,12 @@
+@font-face {
+  font-family: 'poppins';
+  src: url('../src/assets/fonts/poppins.ttf') format('truetype');
+  font-style: normal;
+}
+
 @import "tailwindcss";
+
+
+@theme{
+    --font-poppins: poppins, "sans-serif";
+}
