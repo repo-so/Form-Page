@@ -12,10 +12,35 @@ const steps = [Step1, Step2, Step3];
   const goNext = () => setStep((prev) => Math.min(prev + 1, steps.length - 1));
   const goBack = () => setStep((prev) => Math.max(prev - 1, 0));
 
-  
+  //fai i tre nav cosi sopra il form
 
   return (
-    <div className="relative w-full max-w-lg mx-auto overflow-hidden h-[400px] rounded-xl outline-1 outline-gray-600">
+    <div className="relative w-full max-w-lg mx-4 overflow-hidden h-[500px] rounded-3xl bg-white outline-1 outline-gray-500">
+
+      <div className="flex flex-row justify-around mt-7 text-xs mb-3 h-8">
+        
+        <div className="absolute bg-gray-400 h-[0.09rem] w-[70%] z-0 mt-4"></div>
+        
+        <button className="flex flex-row justify-around items-center bg-white outline-1 outline-blue-600 p-2.5 rounded-full z-1 cursor-pointer" onClick={() => setStep(0)} 
+                style={{outline: step === 0 ? '2px solid #3b82f6' : '1px solid #6b7280'}}>
+
+          <p className="text-[0.55rem] mr-1 bg-amber-300 rounded-full p-[0.125rem] w-3 text-center leading-none">1</p>
+          <p className="leading-none">Open Positions</p>
+        </button>
+
+        <button className="flex flex-row justify-around items-center bg-white outline-1 outline-blue-600 p-2.5 rounded-full z-1 cursor-pointer" onClick={() => setStep(1)}
+                style={{outline: step === 1 ? '2px solid #3b82f6' : '1px solid #6b7280'}}>
+          <p className="text-[0.55rem] mr-1 bg-amber-300 rounded-full p-[0.125rem] w-3 text-center leading-none">2</p>
+          <p className="leading-none">Career History</p>
+        </button>
+
+        <button className="flex flex-row justify-around items-center bg-white outline-1 outline-blue-600 p-2.5 rounded-full z-1 cursor-pointer" onClick={() => setStep(2)}
+                style={{outline: step === 2 ? '2px solid #3b82f6' : '1px solid #6b7280'}}>
+          <p className="text-[0.55rem] mr-1 bg-amber-300 rounded-full p-[0.125rem] w-3 text-center leading-none">3</p>
+          <p className="leading-none">Personal Info</p>
+        </button>
+      </div>
+
       <div
         className="flex transition-transform duration-500 ease-in-out"
         style={{ transform: `translateX(-${step * 100}%)` }}
