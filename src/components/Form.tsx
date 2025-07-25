@@ -15,7 +15,7 @@ const steps = [Step1, Step2, Step3];
   //fai i tre nav cosi sopra il form
 
   return (
-    <div className="relative w-full max-w-md mx-4 overflow-hidden h-[432px] rounded-3xl bg-white outline-1 outline-gray-500">
+    <div className="relative w-full max-w-md mx-4 overflow-hidden h-[462px] rounded-3xl bg-white outline-1 outline-gray-500">
 
       <div className="flex flex-row justify-around mt-7 text-xs mb-2 h-8">
         
