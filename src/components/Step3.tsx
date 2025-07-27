@@ -6,32 +6,55 @@ import italy from '../assets/svgs/italy.svg'
 
 export default function Step3() {
 
+  
   const [email, setEmail] = useState("");
-  const [touched, setTouched] = useState(false);
+  const [phone, setPhone] = useState("");
+  const [name, setName] = useState("");
+  const [name3, setName3] = useState("");
+  const [isChecked, setIsChecked] = useState(false);
 
   const isValidEmail = (value: string) =>
     /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-    const showError = touched && !isValidEmail(email);
-
-  const [phone, setPhone] = useState("");
-  const [touched1, setTouched1] = useState(false);
-
   const isValidPhone = (value: string) => /^[0-9]{10}$/.test(value);
-  const showError1 = touched1 && !isValidPhone(phone);
   const prefix: string = "+39"; 
+  const isValidText = (text: string) => {return text.trim().length > 0};
 
-  const isValidText = (text: string) => {return text.length > 0};
 
-  const [name, setName] = useState("");
-  const [touched2, setTouched2] = useState(false);
-  const showError2 = touched2 && !isValidText(name);
-  
-  const [name3, setName3] = useState("");
-  const [touched3, setTouched3] = useState(false);
-  const showError3 = touched3 && !isValidText(name3);
+  const [touched, setTouched] = useState({
+    email: false,
+    phone: false,
+    name: false,
+    name3: false,
+    isChecked: false,
+  })
 
-  const [isChecked, setIsChecked] = useState(false);
+  const showError = touched.email && !isValidEmail(email);
+  const showError1 = touched.phone && !isValidPhone(phone);
+  const showError2 = touched.name && !isValidText(name);
+  const showError3 = touched.name3 && !isValidText(name3);
+  const showCheckboxError = touched.isChecked && !isChecked;
 
+  const handleSubmit = () => {
+    // segna tutti gli input come gia toccati, cosi anche se non l'hai toccati checka se sono poi validi
+    setTouched({
+      email: true,
+      phone: true,
+      name: true,
+      name3: true,
+      isChecked: true,
+    });
+
+    const allValid =
+      isValidEmail(email) &&
+      isValidPhone(phone) &&
+      isValidText(name) &&
+      isValidText(name3) &&
+      isChecked;
+
+    if (allValid) {
+      alert("tutti validi"); // Proceed only if valid
+    }
+  };
 
   return (
     <div className="py-4 px-7 bg-white h-full ">
@@ -46,7 +69,7 @@ export default function Step3() {
       <input value={name} className={`border-3  p-[0.3rem] w-full  rounded-lg text-sm font-poppins
                           ${showError2 ? "border-red-500 focus:ring-red-300" : "border-[#222222] "} outline-none`} placeholder="Your first name" 
               onChange={(e) => setName(e.target.value)} 
-          onBlur={() => setTouched2(true)}/>
+          onBlur={() => setTouched((previous) => ({ ...previous, name: true }))}/>
       </div>
 
       <div className="flex flex-col">
@@ -54,7 +77,7 @@ export default function Step3() {
 <input value={name3} className={`border-3  p-[0.3rem] w-full  rounded-lg text-sm font-poppins
                           ${showError3 ? "border-red-500 focus:ring-red-300" : "border-[#222222] "} outline-none`} placeholder="Your last name" 
               onChange={(e) => setName3(e.target.value)} 
-          onBlur={() => setTouched3(true)}/>      </div>
+          onBlur={() => setTouched((previous) => ({ ...previous, name3: true }))}/>      </div>
       </div>
 
       <p className="font-poppins text-[0.89rem]">Email</p>
@@ -66,7 +89,7 @@ export default function Step3() {
 
               type="email" value={email} placeholder="name@domain.com"
               onChange={(e) => setEmail(e.target.value)}
-              onBlur={() => setTouched(true)} />
+              onBlur={() => setTouched((previous) => ({ ...previous, email: true }))} />
 
           <div className={`flex justify-center items-center rounded-full size-4.5 mr-1.5 transition-transform duration-200"
                 ${touched && isValidEmail(email) ? "scale-100" : "scale-0 "}`}>
@@ -85,17 +108,17 @@ export default function Step3() {
       <div className=" absolute left-0  h-full flex items-center pl-3">
           <span className={`h-[89%] border-r-3  text-gray-500 text-[0.825rem] text-center pr-2  flex flex-row items-center 
                 ${showError1 ? "border-red-500 focus:ring-red-300" : "border-[#222222] "} focus:outline-none 
-                ${touched1 && isValidPhone(phone) ? "border-green-600" : ""}`}><img src={italy} width={16} className="mr-0.5" /><p className="pt-[0.14rem]">{prefix}</p></span>
+                ${touched.phone && isValidPhone(phone) ? "border-green-600" : ""}`}><img src={italy} width={16} className="mr-0.5" /><p className="pt-[0.14rem]">{prefix}</p></span>
         </div>
       <input  type="tel" value={phone} placeholder="1234567890"
               onChange={(e) => setPhone(e.target.value.replace(/\D/g, ""))} // digits only
-          onBlur={() => setTouched1(true)}
+          onBlur={() => setTouched((previous) => ({ ...previous, phone: true }))}
           className={`p-1.5 pt-2 pl-18 border-3  w-[92%] rounded-lg text-sm 
           ${showError1 ? "border-red-500 focus:ring-red-300" : "border-[#222222] "} focus:outline-none 
-          ${touched1 && isValidPhone(phone) ? "border-green-600" : " "}`} /> 
+          ${touched.phone && isValidPhone(phone) ? "border-green-600" : " "}`} /> 
 
     <div className={`flex justify-center items-center rounded-full size-4.5 mr-1.5 transition-transform duration-200"
-                ${touched1 && isValidPhone(phone) ? "scale-94" : "scale-0 "}`}>
+                ${touched.phone && isValidPhone(phone) ? "scale-94" : "scale-0 "}`}>
             <img src={verified}  />
           </div>
     </div>
@@ -107,19 +130,22 @@ export default function Step3() {
               </p> 
 
         
-      <div className="flex flex-row my-1.5 ml-0.5">
-        <Checkbox isChecked={isChecked} onChange={() => setIsChecked(!isChecked)}
-          /> 
-        <p className="font-poppins text-[0.89rem] pl-0.5">I agree to the Terms and Conditions.</p>
+      <div className="flex flex-row my-1.5 ml-0.5 ">
+        <Checkbox 
+              isChecked={isChecked}
+              onChange={() => {
+                setIsChecked(!isChecked);
+                setTouched((t) => ({ ...t, isChecked: true }));
+              }}
+            />
+        <p className={`font-poppins text-[0.89rem] pl-1 
+                      ${showCheckboxError ? "text-red-600 underline" : "text-black"}`}>I agree to the Terms and Conditions.</p>
       </div>
       <button
-        className="bg-blue-500 text-white px-4 py-2 rounded-lg cursor-pointer font-poppins text-md"
-        onClick={() => alert("helo")}
-        disabled={!isValidEmail(email) || !isValidPhone(phone) || !isValidText(name) || !isValidText(name3)|| !isChecked}
-      >
+        className="bg-blue-500 text-white px-4 py-2 rounded-lg cursor-pointer font-poppins text-md hover:bg-blue-600 transition-colors duration-300"
+        onClick={handleSubmit}>
         Apply Now!
       </button>
     </div>
   );
 }
-//fai che quando clicchi apply senza compilare un campo, sottolinea quel campo
