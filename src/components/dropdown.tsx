@@ -13,23 +13,31 @@ export default function SearchSelect({ options }: SearchSelectProps) {
     opt.toLowerCase().includes(query.toLowerCase())
   );
 
+  
+      const isValidText = (text: string) => {return text.trim().length > 0};
+
+      const [touched, setTouched] = useState(false);
+        const showError = touched && !isValidText(query);
+
   return (
     <div className="relative w-100">
       <input
-        className="border-3 p-1.5 w-full mb-3 rounded-lg text-sm"
+        className={`border-3 p-1.5 w-full mb-3 rounded-lg text-sm 
+                 ${showError ? "border-[#222222]" : "border-[#222222] "} outline-none`}
         placeholder="Select Location..."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         onFocus={() => setShow(true)}
-        onBlur={() => setTimeout(() => setShow(false), 100)} // delay to allow click
+        onBlur={() => {setTimeout(() => setShow(false), 100); setTouched(true)}}
+         // delay to allow click
       />
       {show && (
-        <ul className="absolute z-10 w-full bg-white border-3 rounded-lg  max-h-46 -mt-1 shadow-2xl shadow-black">
+        <ul className="absolute z-10 w-full bg-white border-1 border-gray-500 rounded-lg  max-h-46 -mt-2 shadow-2xl shadow-black">
           {filtered.length > 0 ? (
             filtered.map((item) => (
               <li
                 key={item}
-                className="p-2 border-1 border-gray-200 hover:bg-gray-300 cursor-pointer rounded-lg"
+                className="p-2 pl-3 m-1 border-1 border-gray-300 shadow shadow-gray-400 hover:bg-gray-300 cursor-pointer rounded-lg"
                 onMouseDown={() => {
                   setQuery(item);
                   setShow(false);
