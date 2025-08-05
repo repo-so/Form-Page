@@ -13,14 +13,16 @@ type CardProps = {
 
 const JobCard: React.FC<CardProps> = ({ data, isSelected, onSelect }) => {
   return (
-    <div className="border-1 border-gray-500 rounded-2xl flex flex-col h-29.5 overflow-hidden cursor-pointer"
-          onClick={onSelect} style={{ outline: isSelected ? '1px solid blue' : '2px  #6b7280' }}>
+    <div onClick={onSelect}  className={` rounded-2xl flex flex-col h-29.5 overflow-hidden cursor-pointer transition duration-300 ${
+    isSelected ? 'outline-blue-500 outline-3' : 'outline-gray-500 outline-2'
+  }`}
+          >
         <div className="flex flex-row justify-between pt-2 px-3.5 ">
             <h1 className="font-semibold font-poppins">{data.title}</h1>
 
             <input type="radio" checked={isSelected}
                                 onChange={onSelect}
-                                name="card-selection" />
+            className="accent-blue-600"  name="card-selection" />
         </div>
         <div className="px-2">
         <div className=' h-13.5 w-[10.625rem] overflow-hidden'>
