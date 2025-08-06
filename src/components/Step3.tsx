@@ -4,7 +4,11 @@ import Checkbox from "./checkbox.tsx";
 import verified from '../assets/svgs/verified.png'
 import italy from '../assets/svgs/italy.svg'
 
-export default function Step3() {
+type Props = {
+  onValidChange: (valid: boolean) => void;
+};
+
+export default function Step3({ onValidChange }: Props) {
 
   
   const [email, setEmail] = useState("");
@@ -52,7 +56,8 @@ export default function Step3() {
       isChecked;
 
     if (allValid) {
-      alert("tutti validi"); // Proceed only if valid
+      alert("tutti validi");
+      onValidChange(true);
     }
   };
 

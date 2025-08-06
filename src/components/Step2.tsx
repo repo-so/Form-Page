@@ -1,12 +1,13 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Dropdown from './dropdown.tsx'
 
 type Props = {
   onNext: () => void;
   onBack?: () => void;
+  onValidChange: (valid: boolean) => void;
 };
 
-export default function Step2({ onNext }: Props) {
+export default function Step2({ onNext, onValidChange }: Props) {
 
     const [position, setPosition] = useState("");
     const [qualification, setQualification] = useState("");
@@ -20,8 +21,14 @@ export default function Step2({ onNext }: Props) {
 
   const showError = touched.position && !isValidText(position);
   const showError1 = touched.qualification && !isValidText(qualification);
+    const [submitted, setSubmitted] = useState(false);
+
+    const validate = () => {
+    return isValidText(position) && isValidText(qualification);
+  };
 
   const handleSubmit = () => {
+    setSubmitted(true);
     // segna tutti gli input come gia toccati, cosi anche se non l'hai toccati checka se sono poi validi
     setTouched({
       position: true,
@@ -33,10 +40,17 @@ export default function Step2({ onNext }: Props) {
       isValidText(qualification)
 
     if (allValid) {
-      onNext(); // Proceed only if valid
+      onValidChange(allValid);
+      onNext();
     }
   };
   
+   useEffect(() => { // per ablare/disablare navbar step3
+    if (submitted) {
+      const allValid = validate();
+      onValidChange(allValid); 
+    }
+  }, [position, qualification]);
 
   const works = ["Hybrid", "Remote", "On-Site"];
 

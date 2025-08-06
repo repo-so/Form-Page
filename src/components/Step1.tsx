@@ -5,11 +5,13 @@ import data from '../data/jobsData.json'; // assuming this is an array of 6 item
 type Props = {
   onNext: () => void;
   onBack?: () => void;
-};
+  onValidChange: (valid: boolean) => void;
+  };
 
-export default function Step1({ onNext }: Props) {
+export default function Step1({ onNext, onValidChange }: Props) {
 
     const [selectedId, setSelectedId] = useState<string | null>(null); //per radio
+    onValidChange(selectedId ? true : false);
 
   return (
     <div className="relative p-6 bg-white h-full ">
@@ -32,7 +34,7 @@ export default function Step1({ onNext }: Props) {
       <div className='left-0 w-[100%] absolute z-10 flex justify-center items-center'>
     <div className="   w-[86%] shadow-[0_-4px_10px_10px_#ffffffe0]">
       <button
-        className=" bg-blue-500 text-white px-4 py-2 rounded-lg cursor-pointer disabled:bg-blue-400 disabled:cursor-not-allowed"
+        className=" bg-blue-500 text-white px-4 py-2 rounded-lg cursor-pointer font-poppins disabled:bg-blue-400 disabled:cursor-not-allowed"
         onClick={onNext}
         disabled={!selectedId}> 
         Continue
