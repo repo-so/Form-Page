@@ -32,12 +32,12 @@ export default function SearchSelect({ options }: SearchSelectProps) {
          // delay to allow click
       />
       {show && (
-        <ul className="absolute z-10 w-full bg-white border-1 border-gray-500 rounded-lg  max-h-46 -mt-2 shadow-2xl shadow-black">
+        <ul className="absolute z-10 w-full bg-white border-1 border-gray-500 rounded-xl  max-h-46 -mt-2 shadow-2xl shadow-black">
           {filtered.length > 0 ? (
             filtered.map((item) => (
               <li
                 key={item}
-                className="p-2 pl-3 m-1 border-1 border-gray-300 shadow shadow-gray-400 hover:bg-gray-300 cursor-pointer rounded-lg"
+                className="p-2 pl-3 m-1 border-1 border-gray-200 shadow shadow-gray-400 hover:bg-gray-200 cursor-pointer rounded-lg transition-colors duration-200"
                 onMouseDown={() => {
                   setQuery(item);
                   setShow(false);

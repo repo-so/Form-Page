@@ -1,39 +1,39 @@
 [
   {
     "id": "1",
-    "title": "Card 1",
-    "description": "This is card one",
-    "price": 34
+    "title": "Web Developer",
+    "description": "Develop scalable, high-performance web applications using modular architecture, semantic markup, and maintainable front-end logic.",
+    "price": 19
   },
   {
     "id": "2",
-    "title": "Card 2",
-    "description": "This is card two",
+    "title": "Cloud Engineer",
+    "description": "Architect resilient cloud infrastructures using scalable provisioning, fault-tolerant design, and automated orchestration strategies.",
     "price": 21
   },
   {
     "id": "3",
-    "title": "Card 1",
-    "description": "This is card one",
-    "price": 43
+    "title": "Project Manager",
+    "description": "Coordinate end-to-end project lifecycles by aligning scope, timelines, and cross-disciplinary teams with agile delivery frameworks.",
+    "price": 38
   },
   {
     "id": "4",
-    "title": "Card 1",
-    "description": "This is card one",
-    "price": 34
-  },
-  {
-    "id": "5",
-    "title": "Card 1",
-    "description": "This is card one",
+    "title": "Data Analyst",
+    "description": "Manage structured datasets via statistical modeling, pattern detection, and decision support.",
     "price": 24
   },
   {
+    "id": "5",
+    "title": "UX/UI Designer",
+    "description": "Craft user-centered digital interfaces leveraging interaction flows, accessibility heuristics, and iterative design validation methods.",
+    "price": 19
+  },
+  {
     "id": "6",
-    "title": "Card 1",
-    "description": "This is card one",
-    "price": 37
+    "title": "DevOps Engineer",
+    "description": "Streamline deployment workflows through CI/CD automation, environment configuration, and infrastructure-as-code best practices.",
+    "price": 34
   }
   
 ]
