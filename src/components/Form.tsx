@@ -15,15 +15,26 @@ export default function Form() {
   const goNext = () => setStep((prev) => Math.min(prev + 1, steps.length - 1));
   const goBack = () => setStep((prev) => Math.max(prev - 1, 0));
 
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const handleFormSubmit = () => {
+  setIsSubmitted(true); // this triggers SuccessMessage rendering
+  };
+
   const steps = [
   { Component: Step1, setValid: setValid1 },
   { Component: Step2, setValid: setValid2 },
-  { Component: Step3, setValid: setValid3 },
-];
+  { Component: Step3, setValid: setValid3, onSubmitSuccess: handleFormSubmit },
+  ];
+
 
 
   return (
     <div className="relative w-full max-w-md mx-4 overflow-hidden h-[462px] rounded-3xl bg-white outline-1 outline-gray-500">
+
+    {isSubmitted ? (
+      <Step1 onNext={goNext} onBack={goBack} onValidChange={setValid1}/> //QUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+    ) : (<div>
 
       <div className="flex flex-row justify-around mt-7 text-xs mb-2 h-8">
         
@@ -56,12 +67,14 @@ export default function Form() {
         className="flex transition-transform duration-500 ease-in-out"
         style={{ transform: `translateX(-${step * 100}%)` }}
       >
-        {steps.map(({ Component, setValid }, idx) => (
+        {steps.map(({ Component, setValid, onSubmitSuccess }, idx) => (
   <div key={idx} className="w-full shrink-0 grow-0 basis-full">
-    <Component onNext={goNext} onBack={goBack} onValidChange={setValid} />
+    <Component onNext={goNext} onBack={goBack} onValidChange={setValid} onSubmitSuccess={onSubmitSuccess}/>
   </div>
 ))}
       </div>
+      </div>)}
+    
     </div>
   );
 }

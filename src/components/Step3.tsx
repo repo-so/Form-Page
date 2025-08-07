@@ -6,9 +6,10 @@ import italy from '../assets/svgs/italy.svg'
 
 type Props = {
   onValidChange: (valid: boolean) => void;
+  onSubmitSuccess?: () => void;
 };
 
-export default function Step3({ onValidChange }: Props) {
+export default function Step3({ onValidChange, onSubmitSuccess }: Props) {
 
   
   const [email, setEmail] = useState("");
@@ -55,11 +56,13 @@ export default function Step3({ onValidChange }: Props) {
       isValidText(name3) &&
       isChecked;
 
-    if (allValid) {
+    if (allValid && onSubmitSuccess) {
       alert("tutti validi");
       onValidChange(true);
+      onSubmitSuccess();
     }
   };
+
 
   return (
     <div className="py-4 px-7 bg-white h-full ">
