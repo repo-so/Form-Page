@@ -3,6 +3,7 @@ import { useState } from "react";
 import Step1 from "./Step1";
 import Step2 from "./Step2";
 import Step3 from "./Step3";
+import SubmitCard from "./SubmitCard";
 
 export default function Form() {
 
@@ -33,7 +34,7 @@ export default function Form() {
     <div className="relative w-full max-w-md mx-4 overflow-hidden h-[462px] rounded-3xl bg-white outline-1 outline-gray-500">
 
     {isSubmitted ? (
-      <Step1 onNext={goNext} onBack={goBack} onValidChange={setValid1}/> //QUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+      <SubmitCard/> //QUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
     ) : (<div>
 
       <div className="flex flex-row justify-around mt-7 text-xs mb-2 h-8">

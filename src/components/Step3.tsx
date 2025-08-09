@@ -57,7 +57,7 @@ export default function Step3({ onValidChange, onSubmitSuccess }: Props) {
       isChecked;
 
     if (allValid && onSubmitSuccess) {
-      alert("tutti validi");
+      //alert("tutti validi");
       onValidChange(true);
       onSubmitSuccess();
     }
