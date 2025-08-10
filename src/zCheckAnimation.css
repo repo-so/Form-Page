@@ -1,3 +1,47 @@
+.h1_translate {
+  opacity: 0;
+  transform: translateY(50px);
+  animation: slideUp 0.7s ease-out forwards;
+}
+
+@keyframes slideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+.p_translate {
+  opacity: 0;
+  transform: translateY(50px);
+  animation: slideUp 0.7s ease-out forwards;
+  animation-delay: 1000ms;
+}
+
+@keyframes slideUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+}
+
+.btn_opacity {
+  opacity: 0;
+  
+  animation: opazity 0.7s ease-out forwards;
+  animation-delay: 200ms;
+}
+
+@keyframes opazity {
+  to {
+    opacity: 1;
+    
+  }
+
+}
+
 .checkmark {
   width: 100px;
   height: 100px;
